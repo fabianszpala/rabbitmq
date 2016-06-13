@@ -1,0 +1,3 @@
+{% for variable,value in rabbitmq.conf.env.iteritems() %}
+{{ variable|upper() }}="{{ value }}"
+{% endfor %}

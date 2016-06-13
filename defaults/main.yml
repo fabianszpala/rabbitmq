@@ -1,0 +1,37 @@
+---
+
+rabbitmq:
+  new_only: 'no'
+
+  ssl:
+    ca_cert: ~
+    enabled: false
+    server_cert: ~
+    server_key: ~
+
+  conf:
+    tcp:
+      listeners_address: '0.0.0.0'
+      listeners_port: 5672
+    ssl:
+      listeners_address: '0.0.0.0'
+      listeners_port: 5671
+      options:
+        cacertfile: "/etc/rabbitmq/ssl/rabbitmq_cacert.pem"
+        certfile: "/etc/rabbitmq/ssl/rabbitmq_server_cert.pem"
+        keyfile: "/etc/rabbitmq/ssl/rabbitmq_server_key.pem"
+        fail_if_no_peer_cert: true
+    env: { }
+
+  plugins:
+    - rabbitmq_management
+
+  users_definitions:
+    - vhost: /
+      user: rabbit
+      password: superSecretPassword5!
+      force: no
+      tags:
+        - administrator
+
+  vhost_definitions: [ ]
