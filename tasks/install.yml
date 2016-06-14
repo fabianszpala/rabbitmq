@@ -1,0 +1,43 @@
+---
+
+- name: Add the official ERLANG repository's key
+  become: yes
+  apt_key:
+    url: http://packages.erlang-solutions.com/ubuntu/erlang_solutions.asc
+    state: present
+
+- name: Make sure we have the official ERLANG repository
+  become: yes
+  apt_repository:
+    repo: 'deb http://packages.erlang-solutions.com/ubuntu precise contrib'
+    state: present
+    update_cache: yes
+
+- name: Install ERLANG
+  become: yes
+  apt:
+    name: erlang
+
+- name: Add the official rabbitmq repository's key
+  become: yes
+  apt_key:
+    url: https://www.rabbitmq.com/rabbitmq-release-signing-key.asc
+    state: present
+
+- name: Make sure we have the official rabbitmq repository
+  become: yes
+  apt_repository:
+    repo: 'deb http://www.rabbitmq.com/debian/ testing main'
+    state: present
+    update_cache: yes
+
+- name: Install rabbitmq-server
+  become: yes
+  apt:
+    name: rabbitmq-server
+
+- name: Enable rabbitmq-server to survive
+  become: yes
+  service:
+    name: rabbitmq-server
+    enabled: yes
