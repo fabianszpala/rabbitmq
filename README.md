@@ -10,6 +10,8 @@ Develop: [![Build Status](https://travis-ci.org/sansible/rabbitmq.svg?branch=dev
 
 This roles installs RabbitMQ server.
 
+Due to a bug, this role does not work with Ansible 2.1.0.0. Please update to 2.1.1.0.
+
 
 
 
